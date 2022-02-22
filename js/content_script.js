@@ -24241,16 +24241,29 @@ function updateCards() {
         }
     }
 
-
-    var cards = document.getElementsByClassName("flex p-3 pb-0 tw-flex-initial flex-column")
-    var all = document.getElementsByClassName("tw-p-0 mb-4 grid-card grid-card__main tw-rounded-lg")
+    if(document.URL == "https://magiceden.io/marketplace/bored_ape_solana_club")
+    {
+        var cards = document.getElementsByClassName("flex p-3 pb-0 tw-flex-initial flex-column")
+        var all = document.getElementsByClassName("tw-p-0 mb-4 grid-card grid-card__main tw-rounded-lg")
+    } else {
+        var cards = document.getElementsByClassName("flex p-3 pb-0 card-caption col-12 flex-column")
+        var all = document.getElementsByClassName("p-0 mb-4 card card__main max-w-none")
+    }
+    
     var cardstotal = cards.length
     var cardscounter = 0
 
     while (cardscounter <= cardstotal - 1) {
         var substring = 'Bored Ape Solana Club'
-        var record = cards[cardscounter].getElementsByClassName("mb-0 tw-truncate grid-card__title")[0]
-        var img = all[cardscounter].getElementsByClassName("tw-flex-auto tw-flex tw-flex-col tw-w-full")[0]
+        
+        if(document.URL == "https://magiceden.io/marketplace/bored_ape_solana_club"){
+            var record = cards[cardscounter].getElementsByClassName("mb-0 tw-truncate grid-card__title")[0]
+            var img = all[cardscounter].getElementsByClassName("tw-flex-auto tw-flex tw-flex-col tw-w-full")[0]
+        } else {
+            var record = cards[cardscounter].getElementsByClassName("mb-0")[0]
+            var img = all[cardscounter].getElementsByClassName("pure-card flex-1-1-auto d-flex flex-column")[0]
+        }
+        
         var result = record.innerHTML
         if (result.indexOf(substring) !== -1) {
             var ranking = getNestedValue(collection.filter(filterByName), 0 + ".rank");
